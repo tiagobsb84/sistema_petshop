@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +16,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_endereco")
 public class Endereco {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,7 +25,10 @@ public class Endereco {
 	private String bairro;
 	private String uf;
 	private String endereco;
-	private Integer numero;
+	private String numero;
 	private String complemento;
 	private String cep;
+	
+	@OneToOne(mappedBy = "endereco")
+	private Cliente cliente;
 }
